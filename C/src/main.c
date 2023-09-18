@@ -42,7 +42,6 @@ int main(){
                     index = ((TAMANHO_VETOR - index) * -1);
                 }
             }
-            lista_contatos[index] = novo_contato;
             break;
 
             //Remover Contato
