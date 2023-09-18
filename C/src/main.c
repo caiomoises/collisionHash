@@ -14,7 +14,7 @@ int main(){
     while(var_control != 10){
         printar_menu();
         scanf("%i", &var_control);
-        system("cls");
+        system("clear");
 
         switch (var_control)
         {
@@ -28,15 +28,13 @@ int main(){
             Contato novo_contato;
             novo_contato = cria_contato(); // Cria um novo contato e aloca na varíavel novo_contato
             int contato_conc = concatenacao(novo_contato.numero);
-            int probe = 0; // Serve para o caso de ocorrência de colisão
-            int index;     // Index onde será armazenado o novo contato após o hash
             insere_contato(lista_contatos,contato_conc,novo_contato);
             espacos_livre--;
             break;
 
         // Remover Contato
         case 2:
-
+            deleta_contato(lista_contatos);
             break;
 
         // Listar Contato

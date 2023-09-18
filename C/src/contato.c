@@ -11,7 +11,7 @@ typedef struct contato{
 
 void inicializa_lista(Contato *lista_contatos){
     for(int i = 0; i < TAMANHO_VETOR; i++){
-        strcpy(lista_contatos[i].numero, "0");
+        strcpy(lista_contatos[i].numero, "\0");
     }
 }
 
@@ -46,7 +46,7 @@ void insere_contato(Contato *lista_contatos, int cont_conc, Contato novo_contato
     while (1)
     {
         index = hash_function(cont_conc, probe);
-        if ((strcmp(lista_contatos[index].numero, "0")) == 0)
+        if ((strcmp(lista_contatos[index].numero, "\0")) == 0)
         {
             lista_contatos[index] = novo_contato;
             break;
@@ -60,6 +60,42 @@ void insere_contato(Contato *lista_contatos, int cont_conc, Contato novo_contato
         if (index > TAMANHO_VETOR)
         {
             index = ((TAMANHO_VETOR - index) * -1);
+        }
+    }
+}
+
+void deleta_contato(Contato *lista_contatos){
+    char contato_del[30];
+    printf("Insira o número do contato que deseja deletar:\n");
+    scanf(" %[^\n]", contato_del);
+    int cont_conc = concatenacao(contato_del); 
+    int probe = 0;
+    int index;
+    while (1)
+    {
+        index = hash_function(cont_conc, probe);
+        if ((strcmp(lista_contatos[index].numero, contato_del)) == 0)
+        {
+            strcpy(lista_contatos[index].numero, "\0");
+            strcpy(lista_contatos[index].nome, "\0");
+            strcpy(lista_contatos[index].email, "\0");
+            break;
+        }
+
+        if (strcmp(lista_contatos[index].numero, contato_del) != 0)
+        {
+            probe++;
+        }
+
+        if (index > TAMANHO_VETOR)
+        {
+            index = ((TAMANHO_VETOR - index) * -1);
+        }
+
+        if(probe > (TAMANHO_VETOR/2))
+        {
+            printf("Contato não encontrado.");
+            break;
         }
     }
 }
