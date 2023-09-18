@@ -40,10 +40,27 @@ int concatenacao(char c[]){
     return key;
 }
 
-Contato insere_contato(Contato *lista_contatos, Contato novo_contato){
-    
+void insere_contato(Contato *lista_contatos, int cont_conc, Contato novo_contato){
+    int probe = 0;
+    int index;
+    while (1)
+    {
+        index = hash_function(cont_conc, probe);
+        if ((strcmp(lista_contatos[index].numero, "0")) == 0)
+        {
+            lista_contatos[index] = novo_contato;
+            break;
+        }
 
+        if (lista_contatos[index].numero != 0)
+        {
+            probe++;
+        }
 
-
+        if (index > TAMANHO_VETOR)
+        {
+            index = ((TAMANHO_VETOR - index) * -1);
+        }
+    }
 }
 
