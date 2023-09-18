@@ -45,7 +45,7 @@ int main(){
 
         // Buscar Contato
         case 4:
-
+            buscar_contato(lista_contatos);
             break;
 
         // Sair do programa
