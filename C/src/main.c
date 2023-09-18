@@ -35,11 +35,12 @@ int main(){
         // Remover Contato
         case 2:
             deleta_contato(lista_contatos);
+            espacos_livre++;
             break;
 
         // Listar Contato
         case 3:
-
+            imprime_contatos(lista_contatos);
             break;
 
         // Buscar Contato

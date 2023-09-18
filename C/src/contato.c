@@ -11,7 +11,7 @@ typedef struct contato{
 
 void inicializa_lista(Contato *lista_contatos){
     for(int i = 0; i < TAMANHO_VETOR; i++){
-        strcpy(lista_contatos[i].numero, "\0");
+        memset(lista_contatos[i].numero, '\0', 30);
     }
 }
 
@@ -92,7 +92,7 @@ void deleta_contato(Contato *lista_contatos){
             index = ((TAMANHO_VETOR - index) * -1);
         }
 
-        if(probe > (TAMANHO_VETOR/2))
+        if(probe > TAMANHO_VETOR)
         {
             printf("Contato não encontrado.");
             break;
@@ -100,3 +100,12 @@ void deleta_contato(Contato *lista_contatos){
     }
 }
 
+
+//Imprimindo lixo, necessário consertar
+void imprime_contatos(Contato *lista_contatos){
+    for(int i = 0; i <= TAMANHO_VETOR; i++){
+        if(lista_contatos[i].numero[0] != '\0'){
+            printf("Nome: %s\nNúmero: %s\nEmail: %s\n\n", lista_contatos[i].nome, lista_contatos[i].numero, lista_contatos[i].email);
+        }
+    }
+}
