@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include <C/src/menu.c>
-#include <C/src/contato.c>
+#include </home/abner/Desktop/Codes/Projeto Hash/collisionHash/C/src/contato.c>
+#include </home/abner/Desktop/Codes/Projeto Hash/collisionHash/C/src/menu.c>
 
 
 //"1-Inserir Contato\n2-Remover Contato\n3-Listar Contatos\n4-Buscar Contato\n8-Sair do Programa\n"
@@ -26,7 +26,7 @@ int main(){
             while (1)
             {
                 index = hash_function(contato_conc, probe);
-                if (strcmp())
+                if ((strcmp(lista_contatos[index].numero, "0")) == 0)
                 {
                     lista_contatos[index] = novo_contato;
                     break;
