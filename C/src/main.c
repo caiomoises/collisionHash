@@ -14,14 +14,15 @@ int main(){
     while(var_control != 10){
         printar_menu();
         scanf("%i", &var_control);
-        system("clear");
+        //system("clear");
 
         switch (var_control)
         {
         // Inserir Contato
         //Transformar em função
         case 1:
-            insere_contato(lista_contatos);
+            Contato novo_contato = cria_contato();
+            insere_contato(lista_contatos, novo_contato);
             espacos_livre--;
             break;
 
@@ -33,6 +34,10 @@ int main(){
 
         // Listar Contato
         case 3:
+            if(espacos_livre == 32){
+                printf("Sem contatos cadastrados.\n");
+                break;
+            }
             imprime_contatos(lista_contatos);
             break;
 

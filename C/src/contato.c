@@ -88,8 +88,7 @@ int retorna_index_comparacao(Contato *lista_contatos, int numero_conc, char *ele
 }
 
 
-void insere_contato(Contato *lista_contatos){
-    Contato novo_contato = cria_contato();
+void insere_contato(Contato *lista_contatos, Contato novo_contato){
     int novo_concatenado = concatenacao(novo_contato.numero);
     int index_vazio = retorna_index_vazio(lista_contatos, novo_concatenado);
     lista_contatos[index_vazio] = novo_contato;
@@ -137,34 +136,67 @@ void buscar_contato(Contato *lista_contatos){
     }
 }
 
-void edita_contato(Contato* lista_contatos){
+void edita_contato(Contato *lista_contatos)
+{
     char numero_edita[30];
     int var_controle = 0, var_confirma;
     printf("Insira o número do contato que deseja editar:\n");
     scanf(" %[^\n]", numero_edita);
-    int cont_conc = concatenacao(numero_edita); 
+    int cont_conc = concatenacao(numero_edita);
     int index = retorna_index_comparacao(lista_contatos, cont_conc, numero_edita);
-    if(index != -1){
-        printf("Qual alteração você deseja fazer?\n1)Nome\n2)Número\n3)Email\n");
-        while(var_controle != 4){
-            switch(var_controle){
-                case 1:
-                    char novo_nome[50];
-                    printf("Insira o novo nome do atual contato %s:\n.", lista_contatos[index].nome);
-                    scanf(" %[^\n]", novo_nome);
+    if (index != -1)
+    {
+        printf("Qual alteração você deseja fazer?\n1)Nome\n2)Número\n3)Email\n4)Sair\n");
+        while (var_controle != 4)
+        {
+            switch (var_controle)
+            {
+            case 1:
+                char novo_nome[50];
+                printf("Insira o novo nome para atual contato %s:\n.", lista_contatos[index].nome);
+                scanf(" %[^\n]", novo_nome);
+                printf("Você irá mudar o nome do contato de %s para %s, tem certeza disso?\n1)Sim\t2)Não\n", lista_contatos[index].nome, novo_nome);
+                scanf("%i", &var_confirma);
+                if (var_confirma == 1)
+                {
+                    strcpy(lista_contatos[index].nome, novo_nome);
+                }
 
+            case 2:
+                char novo_numero[30];
+                printf("Insira o novo número para o atual contato de %s:\n", lista_contatos[index].nome);
+                scanf(" %[^\n]", novo_numero);
+                printf("Você irá mudar o número de contato de %s para %s, tem certeza disso?\n1)Sim\t2)Não\n", lista_contatos[index].nome, novo_numero);
+                scanf("%i", &var_confirma);
+                if (var_confirma == 1)
+                {
+                    memset(lista_contatos[index].numero, '\0', 30);
+                    int novo_numero_conc = concatenacao(novo_numero);
+                    int novo_index = retorna_index_vazio(lista_contatos, novo_numero_conc);
+                    strcpy(lista_contatos[novo_index].numero, novo_numero);
+                    strcpy(lista_contatos[novo_index].nome, lista_contatos[index].nome);
+                    strcpy(lista_contatos[novo_index].email, lista_contatos[index].email);
+                    memset(lista_contatos[index].nome, '\0', 49);
+                    memset(lista_contatos[index].email, '\0', 49);
+                }
 
+            case 3:
+                char novo_email[50];
+                printf("Insira o novo email para atual contato %s:\n.", lista_contatos[index].nome);
+                scanf(" %[^\n]", novo_email);
+                printf("Você irá mudar o email do contato de %s para %s, tem certeza disso?\n1)Sim\t2)Não\n", lista_contatos[index].nome, novo_email);
+                scanf("%i", &var_confirma);
+                if (var_confirma == 1)
+                {
+                    strcpy(lista_contatos[index].email, novo_email);
+                }
+            case 4:
+                continue;
             }
-
-
         }
     }
-    else{
+    else
+    {
         printf("Contato não encontrado.\n");
     }
-
-
-
-
 }
-
