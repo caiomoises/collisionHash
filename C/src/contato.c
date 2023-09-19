@@ -147,8 +147,11 @@ void edita_contato(Contato *lista_contatos)
     if (index != -1)
     {
         printf("Qual alteração você deseja fazer?\n1)Nome\n2)Número\n3)Email\n4)Sair\n");
+        scanf("%i", &var_controle);
         while (var_controle != 4)
         {
+            printf("Qual alteração você deseja fazer?\n1)Nome\n2)Número\n3)Email\n4)Sair\n");
+            scanf("%i", &var_controle);
             switch (var_controle)
             {
             case 1:
@@ -161,6 +164,7 @@ void edita_contato(Contato *lista_contatos)
                 {
                     strcpy(lista_contatos[index].nome, novo_nome);
                 }
+                break;
 
             case 2:
                 char novo_numero[30];
@@ -179,6 +183,7 @@ void edita_contato(Contato *lista_contatos)
                     memset(lista_contatos[index].nome, '\0', 49);
                     memset(lista_contatos[index].email, '\0', 49);
                 }
+                break;
 
             case 3:
                 char novo_email[50];
@@ -190,8 +195,10 @@ void edita_contato(Contato *lista_contatos)
                 {
                     strcpy(lista_contatos[index].email, novo_email);
                 }
+                break;
+
             case 4:
-                continue;
+                break;
             }
         }
     }

@@ -48,6 +48,8 @@ int main(){
 
         // Editar Contato
         case 5:
+            edita_contato(lista_contatos);
+            break;
 
         case 9:
 
