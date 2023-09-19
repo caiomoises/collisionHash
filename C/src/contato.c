@@ -207,3 +207,38 @@ void edita_contato(Contato *lista_contatos)
         printf("Contato não encontrado.\n");
     }
 }
+
+
+int importar_contatos(Contato *lista_contatos, int espacos_livres){
+    int qnt_novos_contatos = 0;
+    char linha[200];
+    Contato novo_contato_importado;
+    FILE* arquivo_entrada = fopen("contatos.txt", "r");
+    if (arquivo_entrada == NULL){
+        printf("Erro ao abrir o arquivo de contatos.\n");
+        exit(1);
+    }
+
+    while(fgets(linha, 199, arquivo_entrada) != NULL){
+        sscanf(linha, "Numero: %s\tNome: %s\tEmail: %s", novo_contato_importado.numero, novo_contato_importado.nome, novo_contato_importado.email);
+        insere_contato(lista_contatos, novo_contato_importado);
+        espacos_livres--;
+        if(espacos_livres = 0){
+            printf("Armazenamento cheio.\n");
+            break;
+        }
+    }
+    fclose(arquivo_entrada);
+
+    return(espacos_livres);
+}
+
+void exportar_contatos(Contato *lista_contatos){
+    FILE *saida = fopen("contatos.txt", "a+");
+    for(int i = 0; i <= TAMANHO_VETOR; i++){
+        if(lista_contatos[i].numero[0] != '\0'){
+            fprintf(saida, "Numero: %s\tNome: %s\tEmail: %s\n", lista_contatos[i].numero, lista_contatos[i].nome, lista_contatos[i].email);
+        }
+    }
+    fclose(saida);
+}

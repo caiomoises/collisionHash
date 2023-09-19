@@ -51,6 +51,18 @@ int main(){
             edita_contato(lista_contatos);
             break;
 
+        //Importar Contatos
+        case 6:
+            espacos_livre = importar_contatos(lista_contatos, espacos_livre);
+            break;
+
+
+        //Exportar Contatos
+        case 7:
+            exportar_contatos(lista_contatos);
+            break;
+
+
         case 9:
 
             break;
