@@ -16,7 +16,6 @@ void inicializa_lista(Contato *lista_contatos){
 }
 
 Contato cria_contato(){
-    //Necessário transformar char numero em int numero
     Contato novo_contato;
     printf("Insira o nome do contato:\n");
     scanf(" %[^\n]", novo_contato.nome);

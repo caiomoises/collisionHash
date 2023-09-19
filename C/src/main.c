@@ -19,6 +19,7 @@ int main(){
         switch (var_control)
         {
         // Inserir Contato
+        //Transformar em função
         case 1:
             if(espacos_livre == 0)
             {
