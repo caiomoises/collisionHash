@@ -3,23 +3,25 @@
 #include <string.h>
 #define TAMANHO_VETOR 32
 
-typedef struct contato{
+typedef struct contato
+{
     char nome[50];
     char email[50];
     char numero[30];
 } Contato;
 
-
-//Essa função serve para retirar o lixo da memória
-void inicializa_lista(Contato *lista_contatos){
-    for(int i = 0; i <= TAMANHO_VETOR; i++){
+// Essa função serve para retirar o lixo da memória
+void inicializa_lista(Contato *lista_contatos)
+{
+    for (int i = 0; i <= TAMANHO_VETOR; i++)
+    {
         memset(lista_contatos[i].numero, '\0', 30);
     }
 }
 
-
-//Basicamente cria o contato e retorna
-Contato cria_contato(){
+// Basicamente cria o contato e retorna
+Contato cria_contato()
+{
     Contato novo_contato;
     printf("Insira o nome do contato:\n");
     scanf(" %[^\n]", novo_contato.nome);
@@ -27,35 +29,37 @@ Contato cria_contato(){
     scanf(" %[^\n]", novo_contato.numero);
     printf("Insira o email de %s:\n", novo_contato.nome);
     scanf(" %[^\n]", novo_contato.email);
-    return(novo_contato);
+    return (novo_contato);
 }
 
-
-//Função hash para obter o índice onde será armazenado o elemento
-int hash_function(int key, int probe){
-    return(((key % TAMANHO_VETOR)+ probe) % TAMANHO_VETOR);
+// Função hash para obter o índice onde será armazenado o elemento
+int hash_function(int key, int probe)
+{
+    return (((key % TAMANHO_VETOR) + probe) % TAMANHO_VETOR);
 }
 
-//Concatena a string para obter uma key utilizada na função hash
-int concatenacao(char c[]){
+// Concatena a string para obter uma key utilizada na função hash
+int concatenacao(char c[])
+{
     int key = 0, i = 0;
-    while(c[i] != '\0'){
+    while (c[i] != '\0')
+    {
         key += c[i];
-        i++; 
-    } 
+        i++;
+    }
     return key;
 }
 
-
-//Função utilizada para procurar um index vazio, caso o index indicado não esteja, a função irá ser repetida, incrementando o probe e obtendo um novo indice
-int retorna_index_vazio(Contato *lista_contatos, int numero_conc){
+// Função utilizada para procurar um index vazio, caso o index indicado não esteja, a função irá ser repetida, incrementando o probe e obtendo um novo indice
+int retorna_index_vazio(Contato *lista_contatos, int numero_conc)
+{
     int index, probe = 0;
     while (1)
     {
         index = hash_function(numero_conc, probe);
         if ((strcmp(lista_contatos[index].numero, "\0")) == 0)
         {
-            return(index);
+            return (index);
         }
 
         if ((strcmp(lista_contatos[index].numero, "\0")) != 0)
@@ -70,15 +74,16 @@ int retorna_index_vazio(Contato *lista_contatos, int numero_conc){
     }
 }
 
-//Função utilizada para comparar o elemento do index indicado com o elemento procurado pelo usuário
-int retorna_index_comparacao(Contato *lista_contatos, int numero_conc, char *elemento_comparado){
+// Função utilizada para comparar o elemento do index indicado com o elemento procurado pelo usuário
+int retorna_index_comparacao(Contato *lista_contatos, int numero_conc, char *elemento_comparado)
+{
     int index, probe = 0;
     while (1)
     {
         index = hash_function(numero_conc, probe);
         if ((strcmp(lista_contatos[index].numero, elemento_comparado)) == 0)
         {
-            return(index);
+            return (index);
         }
 
         if ((strcmp(lista_contatos[index].numero, elemento_comparado)) != 0)
@@ -91,26 +96,28 @@ int retorna_index_comparacao(Contato *lista_contatos, int numero_conc, char *ele
             index = ((TAMANHO_VETOR - index) * -1);
         }
 
-        if(probe == TAMANHO_VETOR){
-            return(-1);
+        if (probe == TAMANHO_VETOR)
+        {
+            return (-1);
         }
     }
 }
 
-//Irá inserir o contado na lista
-void insere_contato(Contato *lista_contatos, Contato novo_contato){
+// Irá inserir o contado na lista
+void insere_contato(Contato *lista_contatos, Contato novo_contato)
+{
     int novo_concatenado = concatenacao(novo_contato.numero);
     int index_vazio = retorna_index_vazio(lista_contatos, novo_concatenado);
     lista_contatos[index_vazio] = novo_contato;
 }
 
-
-//Deletará o contato indicado 
-void deleta_contato(Contato *lista_contatos){
+// Deletará o contato indicado
+void deleta_contato(Contato *lista_contatos)
+{
     char numero_deleta[30];
     printf("Insira o número do contato que deseja deletar:\n");
     scanf(" %[^\n]", numero_deleta);
-    int cont_conc = concatenacao(numero_deleta); 
+    int cont_conc = concatenacao(numero_deleta);
     int index = retorna_index_comparacao(lista_contatos, cont_conc, numero_deleta);
     if (index != (-1))
     {
@@ -118,37 +125,43 @@ void deleta_contato(Contato *lista_contatos){
         strcpy(lista_contatos[index].nome, "\0");
         strcpy(lista_contatos[index].email, "\0");
     }
-    else{
+    else
+    {
         printf("Contato não cadastrado.\n");
     }
 }
 
-//Irá imprimir todos os elementos do vetor que possuem dados
-void imprime_contatos(Contato *lista_contatos){
-    for(int i = 0; i <= TAMANHO_VETOR; i++){
-        if(lista_contatos[i].numero[0] != '\0'){
+// Irá imprimir todos os elementos do vetor que possuem dados
+void imprime_contatos(Contato *lista_contatos)
+{
+    for (int i = 0; i <= TAMANHO_VETOR; i++)
+    {
+        if (lista_contatos[i].numero[0] != '\0')
+        {
             printf("Nome: %s\nNúmero: %s\nEmail: %s\n\n", lista_contatos[i].nome, lista_contatos[i].numero, lista_contatos[i].email);
         }
     }
 }
 
-//Irá buscar o elemento indicado pelo usuário através da função hash
-void buscar_contato(Contato *lista_contatos){
+// Irá buscar o elemento indicado pelo usuário através da função hash
+void buscar_contato(Contato *lista_contatos)
+{
     char numero_busca[30];
     printf("Insira o número do contato que deseja buscar:\n");
     scanf(" %[^\n]", numero_busca);
     int cont_conc = concatenacao(numero_busca);
     int index = retorna_index_comparacao(lista_contatos, cont_conc, numero_busca);
-    if(index != (-1)){
+    if (index != (-1))
+    {
         printf("Nome: %s\nNúmero: %s\nEmail: %s\n\n", lista_contatos[index].nome, lista_contatos[index].numero, lista_contatos[index].email);
     }
-    else{
+    else
+    {
         printf("Contato não encontrado.\n");
     }
 }
 
-
-//Edita o contato, necessário tratativas para erros
+// Edita o contato, necessário tratativas para erros
 void edita_contato(Contato *lista_contatos)
 {
     char numero_edita[30];
@@ -221,36 +234,43 @@ void edita_contato(Contato *lista_contatos)
     }
 }
 
-//Importa contatos de um arquivo.txt e aloca na nossa lista
-int importar_contatos(Contato *lista_contatos, int espacos_livres){
+// Importa contatos de um arquivo.txt e aloca na nossa lista
+int importar_contatos(Contato *lista_contatos, int espacos_livres)
+{
     int qnt_novos_contatos = 0;
     char linha[200];
     Contato novo_contato_importado;
-    FILE* arquivo_entrada = fopen("contatos.txt", "r");
-    if (arquivo_entrada == NULL){
+    FILE *arquivo_entrada = fopen("contatos.txt", "r");
+    if (arquivo_entrada == NULL)
+    {
         printf("Erro ao abrir o arquivo de contatos.\n");
         exit(1);
     }
 
-    while(fgets(linha, 199, arquivo_entrada) != NULL){
+    while (fgets(linha, 199, arquivo_entrada) != NULL)
+    {
         sscanf(linha, "Numero: %s\tNome: %s\tEmail: %s", novo_contato_importado.numero, novo_contato_importado.nome, novo_contato_importado.email);
         insere_contato(lista_contatos, novo_contato_importado);
         espacos_livres--;
-        if(espacos_livres = 0){
+        if (espacos_livres = 0)
+        {
             printf("Armazenamento cheio.\n");
             break;
         }
     }
     fclose(arquivo_entrada);
 
-    return(espacos_livres);
+    return (espacos_livres);
 }
 
-//Exporta contatos da lista para arquivo.txt
-void exportar_contatos(Contato *lista_contatos){
+// Exporta contatos da lista para arquivo.txt
+void exportar_contatos(Contato *lista_contatos)
+{
     FILE *saida = fopen("contatos.txt", "a+");
-    for(int i = 0; i <= TAMANHO_VETOR; i++){
-        if(lista_contatos[i].numero[0] != '\0'){
+    for (int i = 0; i <= TAMANHO_VETOR; i++)
+    {
+        if (lista_contatos[i].numero[0] != '\0')
+        {
             fprintf(saida, "Numero: %s\tNome: %s\tEmail: %s\n", lista_contatos[i].numero, lista_contatos[i].nome, lista_contatos[i].email);
         }
     }
