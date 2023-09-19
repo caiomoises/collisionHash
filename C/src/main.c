@@ -3,8 +3,6 @@
 #include </home/abner/Desktop/Codes/Projeto Hash/collisionHash/C/src/menu.c>
 
 
-//1-Inserir Contato\n2-Remover Contato\n3-Listar Contatos\n4-Buscar Contato\n5-Editar Contato\n6-Importar Contatos\n7-Exportar Contatos\n8-Sair do Programa
-
 int main(){
     int espacos_livre = TAMANHO_VETOR;
     int var_control = 0;
@@ -18,8 +16,8 @@ int main(){
 
         switch (var_control)
         {
+
         // Inserir Contato
-        //Transformar em função
         case 1:
             Contato novo_contato = cria_contato();
             insere_contato(lista_contatos, novo_contato);
@@ -34,7 +32,8 @@ int main(){
 
         // Listar Contato
         case 3:
-            if(espacos_livre == 32){
+            if (espacos_livre == 32)
+            {
                 printf("Sem contatos cadastrados.\n");
                 break;
             }
@@ -51,18 +50,17 @@ int main(){
             edita_contato(lista_contatos);
             break;
 
-        //Importar Contatos
+        // Importar Contatos
         case 6:
             espacos_livre = importar_contatos(lista_contatos, espacos_livre);
             break;
 
-
-        //Exportar Contatos
+        // Exportar Contatos
         case 7:
             exportar_contatos(lista_contatos);
             break;
 
-
+        // Saída do Programa
         case 9:
 
             break;

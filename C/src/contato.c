@@ -9,12 +9,16 @@ typedef struct contato{
     char numero[30];
 } Contato;
 
+
+//Essa função serve para retirar o lixo da memória
 void inicializa_lista(Contato *lista_contatos){
     for(int i = 0; i <= TAMANHO_VETOR; i++){
         memset(lista_contatos[i].numero, '\0', 30);
     }
 }
 
+
+//Basicamente cria o contato e retorna
 Contato cria_contato(){
     Contato novo_contato;
     printf("Insira o nome do contato:\n");
@@ -26,10 +30,13 @@ Contato cria_contato(){
     return(novo_contato);
 }
 
+
+//Função hash para obter o índice onde será armazenado o elemento
 int hash_function(int key, int probe){
     return(((key % TAMANHO_VETOR)+ probe) % TAMANHO_VETOR);
 }
 
+//Concatena a string para obter uma key utilizada na função hash
 int concatenacao(char c[]){
     int key = 0, i = 0;
     while(c[i] != '\0'){
@@ -39,6 +46,8 @@ int concatenacao(char c[]){
     return key;
 }
 
+
+//Função utilizada para procurar um index vazio, caso o index indicado não esteja, a função irá ser repetida, incrementando o probe e obtendo um novo indice
 int retorna_index_vazio(Contato *lista_contatos, int numero_conc){
     int index, probe = 0;
     while (1)
@@ -61,6 +70,7 @@ int retorna_index_vazio(Contato *lista_contatos, int numero_conc){
     }
 }
 
+//Função utilizada para comparar o elemento do index indicado com o elemento procurado pelo usuário
 int retorna_index_comparacao(Contato *lista_contatos, int numero_conc, char *elemento_comparado){
     int index, probe = 0;
     while (1)
@@ -87,7 +97,7 @@ int retorna_index_comparacao(Contato *lista_contatos, int numero_conc, char *ele
     }
 }
 
-
+//Irá inserir o contado na lista
 void insere_contato(Contato *lista_contatos, Contato novo_contato){
     int novo_concatenado = concatenacao(novo_contato.numero);
     int index_vazio = retorna_index_vazio(lista_contatos, novo_concatenado);
@@ -95,6 +105,7 @@ void insere_contato(Contato *lista_contatos, Contato novo_contato){
 }
 
 
+//Deletará o contato indicado 
 void deleta_contato(Contato *lista_contatos){
     char numero_deleta[30];
     printf("Insira o número do contato que deseja deletar:\n");
@@ -112,7 +123,7 @@ void deleta_contato(Contato *lista_contatos){
     }
 }
 
-
+//Irá imprimir todos os elementos do vetor que possuem dados
 void imprime_contatos(Contato *lista_contatos){
     for(int i = 0; i <= TAMANHO_VETOR; i++){
         if(lista_contatos[i].numero[0] != '\0'){
@@ -121,7 +132,7 @@ void imprime_contatos(Contato *lista_contatos){
     }
 }
 
-
+//Irá buscar o elemento indicado pelo usuário através da função hash
 void buscar_contato(Contato *lista_contatos){
     char numero_busca[30];
     printf("Insira o número do contato que deseja buscar:\n");
@@ -136,6 +147,8 @@ void buscar_contato(Contato *lista_contatos){
     }
 }
 
+
+//Edita o contato, necessário tratativas para erros
 void edita_contato(Contato *lista_contatos)
 {
     char numero_edita[30];
@@ -208,7 +221,7 @@ void edita_contato(Contato *lista_contatos)
     }
 }
 
-
+//Importa contatos de um arquivo.txt e aloca na nossa lista
 int importar_contatos(Contato *lista_contatos, int espacos_livres){
     int qnt_novos_contatos = 0;
     char linha[200];
@@ -233,6 +246,7 @@ int importar_contatos(Contato *lista_contatos, int espacos_livres){
     return(espacos_livres);
 }
 
+//Exporta contatos da lista para arquivo.txt
 void exportar_contatos(Contato *lista_contatos){
     FILE *saida = fopen("contatos.txt", "a+");
     for(int i = 0; i <= TAMANHO_VETOR; i++){
