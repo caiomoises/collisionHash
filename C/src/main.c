@@ -3,7 +3,7 @@
 #include </home/abner/Desktop/Codes/Projeto Hash/collisionHash/C/src/menu.c>
 
 
-//"1-Inserir Contato\n2-Remover Contato\n3-Listar Contatos\n4-Buscar Contato\n8-Sair do Programa\n"
+//1-Inserir Contato\n2-Remover Contato\n3-Listar Contatos\n4-Buscar Contato\n5-Editar Contato\n6-Importar Contatos\n7-Exportar Contatos\n8-Sair do Programa
 
 int main(){
     int espacos_livre = TAMANHO_VETOR;
@@ -21,15 +21,7 @@ int main(){
         // Inserir Contato
         //Transformar em função
         case 1:
-            if(espacos_livre == 0)
-            {
-                printf("Agenda cheia.\n");
-                break;
-            }
-            Contato novo_contato;
-            novo_contato = cria_contato(); // Cria um novo contato e aloca na varíavel novo_contato
-            int contato_conc = concatenacao(novo_contato.numero);
-            insere_contato(lista_contatos,contato_conc,novo_contato);
+            insere_contato(lista_contatos);
             espacos_livre--;
             break;
 
@@ -49,7 +41,9 @@ int main(){
             buscar_contato(lista_contatos);
             break;
 
-        // Sair do programa
+        // Editar Contato
+        case 5:
+
         case 9:
 
             break;
