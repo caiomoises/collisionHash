@@ -1,20 +1,4 @@
-Nome: Abner
-Numero: 0000000000
-Email: sdhjfhvjfkvahjfv
-
-Nome: joao
-Numero: 456798
-Email: sgnlghegw
-
-Nome: victor
-Numero: 3232
-Email: fefefggseew
-
-Nome: caio
-Numero: 8496563223
-Email: fjkafkjafgkn
-
-Nome: vlad
-Numero: 321
-Email: sbfjkvf
+Nome: Caio 
+Numero: 8484
+Email: caio.moiises
 
