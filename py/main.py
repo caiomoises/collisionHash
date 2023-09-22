@@ -1,4 +1,5 @@
 from contato import *
+import os
 
 if __name__ == "__main__":
     lista_contatos = [Contato() for _ in range(TAMANHO_VETOR)]
@@ -16,19 +17,26 @@ if __name__ == "__main__":
         opcao = int(input("Escolha uma opção: "))
 
         if opcao == 1:
+            os.system('cls')
             novo_contato = cria_contato()
             insere_contato(lista_contatos, novo_contato)
         elif opcao == 2:
+            os.system('cls')
             deleta_contato(lista_contatos)
         elif opcao == 3:
+            os.system('cls')
             imprime_contatos(lista_contatos)
         elif opcao == 4:
+            os.system('cls')
             buscar_contato(lista_contatos)
         elif opcao == 5:
+            os.system('cls')
             edita_contato(lista_contatos)
         elif opcao == 6:
+            os.system('cls')
             espacos_livres = importar_contatos(lista_contatos, espacos_livres)
         elif opcao == 7:
+            os.system('cls')
             exportar_contatos(lista_contatos)
         elif opcao == 8:
             break

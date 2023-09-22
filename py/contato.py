@@ -1,10 +1,4 @@
-TAMANHO_VETOR = 32
-
-class Contato:
-    def __init__(self):
-        self.nome = ""
-        self.email = ""
-        self.numero = ""
+from classe import *
 
 def inicializa_lista(lista_contatos):
     for index in range(TAMANHO_VETOR):
@@ -12,15 +6,15 @@ def inicializa_lista(lista_contatos):
 
 def cria_contato():
     novo_contato = Contato()
-    novo_contato.nome = input("Insira o nome do contato:\n")
-    print(f"Insira o número de contato de {novo_contato.nome}:\n")
+    novo_contato.nome = input("Insira o nome do contato: \n")
+    print(f"\nInsira o número de contato de {novo_contato.nome}: ")
     novo_contato.numero = input()
-    print(f"Insira o email de {novo_contato.nome}:\n")
+    print(f"\nInsira o email de {novo_contato.nome}: ")
     novo_contato.email = input()
     return novo_contato
 
-def hash_function(key, probe):
-    return ((key % TAMANHO_VETOR) + probe) % TAMANHO_VETOR
+def hash_function(key, tentativas):
+    return ((key % TAMANHO_VETOR) + tentativas) % TAMANHO_VETOR
 
 def concatenacao(c):
     key = 0
@@ -29,32 +23,32 @@ def concatenacao(c):
     return key
 
 def retorna_index_vazio(lista_contatos, numero_conc):
-    probe = 0
+    tentativas = 0
     while True:
-        index = hash_function(numero_conc, probe)
+        index = hash_function(numero_conc, tentativas)
         if lista_contatos[index].numero == "":
             return index
 
         if lista_contatos[index].numero != "":
-            probe += 1
+            tentativas += 1
 
         if index > TAMANHO_VETOR:
             index = (TAMANHO_VETOR - index) * -1
 
 def retorna_index_comparacao(lista_contatos, numero_conc, elemento_comparado):
-    probe = 0
+    tentativas = 0
     while True:
-        index = hash_function(numero_conc, probe)
+        index = hash_function(numero_conc, tentativas)
         if lista_contatos[index].numero == elemento_comparado:
             return index
 
         if lista_contatos[index].numero != elemento_comparado:
-            probe += 1
+            tentativas += 1
 
         if index > TAMANHO_VETOR:
             index = (TAMANHO_VETOR - index) * -1
 
-        if probe == TAMANHO_VETOR:
+        if tentativas == TAMANHO_VETOR:
             return -1
 
 def insere_contato(lista_contatos, novo_contato):
@@ -79,27 +73,18 @@ def atualiza_arquivo_contatos(lista_contatos):
     with open("C:\\Users\\caiom\\Desktop\\projeto_AED\\collisionHash\\py\\contatos.txt", "w") as arquivo:
         for contato in lista_contatos:
             if contato.numero:
-                arquivo.write(f"Numero: {contato.numero}\tNome: {contato.nome}\tEmail: {contato.email}\n")
+                arquivo.write(f"Nome: {contato.nome}\nNumero: {contato.numero}\nEmail: {contato.email}\n\n")
 
-def imprime_contatos(lista_contatos):
-    contatos_importados = []
-    arquivo_entrada = open("C:\\Users\\caiom\\Desktop\\projeto_AED\\collisionHash\\py\\contatos.txt", "r")
-    if arquivo_entrada is None:
-        print("Erro ao abrir o arquivo de contatos.")
-        exit(1)
-
-    for linha in arquivo_entrada:
-        partes = linha.split("\t")
-        if len(partes) == 3:
-            novo_contato_importado = Contato()
-            novo_contato_importado.numero = partes[0].split(": ")[1]
-            novo_contato_importado.nome = partes[1].split(": ")[1]
-            novo_contato_importado.email = partes[2].split(": ")[1]
-            contatos_importados.append(novo_contato_importado)
-
-    arquivo_entrada.close()
-    return contatos_importados
-
+def imprime_contatos(contatos):
+    try:
+        with open("C:\\Users\\caiom\\Desktop\\projeto_AED\\collisionHash\\py\\contatos.txt", "r") as arquivo:
+            conteudo = arquivo.read()
+            if conteudo:
+                print(conteudo)
+            else:
+                print("A lista de contatos está vazia.")
+    except FileNotFoundError:
+        print("O arquivo de contatos não foi encontrado.")
 def buscar_contato(lista_contatos):
     numero_busca = input("Insira o número do contato que deseja buscar:\n")
     cont_conc = concatenacao(numero_busca)
@@ -150,8 +135,7 @@ def edita_contato(lista_contatos):
         print("Contato não encontrado.")
 
 def importar_contatos(lista_contatos, espacos_livres):
-    qnt_novos_contatos = 0
-    novo_contato_importado = Contato()
+    contatos_importados = []
     arquivo_entrada = open("C:\\Users\\caiom\\Desktop\\projeto_AED\\collisionHash\\py\\contatos.txt", "r")
     if arquivo_entrada is None:
         print("Erro ao abrir o arquivo de contatos.")
@@ -160,54 +144,17 @@ def importar_contatos(lista_contatos, espacos_livres):
     for linha in arquivo_entrada:
         partes = linha.split("\t")
         if len(partes) == 3:
+            novo_contato_importado = Contato()
             novo_contato_importado.numero = partes[0].split(": ")[1]
             novo_contato_importado.nome = partes[1].split(": ")[1]
             novo_contato_importado.email = partes[2].split(": ")[1]
-            insere_contato(lista_contatos, novo_contato_importado)
-            espacos_livres -= 1
-            if espacos_livres == 0:
-                print("Armazenamento cheio.")
-                break
+            contatos_importados.append(novo_contato_importado)
+
     arquivo_entrada.close()
-    return espacos_livres
+    return contatos_importados
 
 def exportar_contatos(lista_contatos):
-    with open("C:\\Users\\caiom\\Desktop\\projeto_AED\\collisionHash\\py\\contatos.txt", "a+") as saida:
+    with open("C:\\Users\\caiom\\Desktop\\projeto_AED\\collisionHash\\py\\contatos.txt", "w") as saida:
         for contato in lista_contatos:
             if contato.numero:
-                saida.write(f"Numero: {contato.numero}\tNome: {contato.nome}\tEmail: {contato.email}\n")
-
-if __name__ == "__main__":
-    lista_contatos = [Contato() for _ in range(TAMANHO_VETOR)]
-    espacos_livres = TAMANHO_VETOR
-
-    while True:
-        print("\n1) Inserir contato")
-        print("2) Deletar contato")
-        print("3) Listar contatos")
-        print("4) Buscar contato")
-        print("5) Editar contato")
-        print("6) Importar contatos")
-        print("7) Exportar contatos")
-        print("8) Sair")
-        opcao = int(input("Escolha uma opção: "))
-
-        if opcao == 1:
-            novo_contato = cria_contato()
-            insere_contato(lista_contatos, novo_contato)
-        elif opcao == 2:
-            deleta_contato(lista_contatos)
-        elif opcao == 3:
-            imprime_contatos(lista_contatos)
-        elif opcao == 4:
-            buscar_contato(lista_contatos)
-        elif opcao == 5:
-            edita_contato(lista_contatos)
-        elif opcao == 6:
-            espacos_livres = importar_contatos(lista_contatos, espacos_livres)
-        elif opcao == 7:
-            exportar_contatos(lista_contatos)
-        elif opcao == 8:
-            break
-        else:
-            print("Opção inválida. Tente novamente.")
+                saida.write(f"Nome: {contato.nome}\nNumero: {contato.numero}\nEmail: {contato.email}\n\n")
