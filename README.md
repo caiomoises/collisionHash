@@ -1,6 +1,12 @@
 # Collision Hash
 
-#### Integrantes:
+#### Docente:
+- [ Kennedy Reurison Lopes](https://github.com/kennedyufersa)
+
+#### Monitor:
+- [Marcos Mikael Lima Vidal](https://github.com/Bazchh)
+
+#### Discentes:
 - [Caio Moisés Vieira Cavalcante](https://github.com/caiomoises)
 - [Francisco Gerliano de Oliveira Souza](https://github.com/sgerliano)
 - [Abner Gama Torres](https://github.com/bnerTT)
