@@ -259,14 +259,13 @@ int importar_contatos(Contato *lista_contatos, int espacos_livres)
         }
     }
     fclose(arquivo_entrada);
-
     return (espacos_livres);
 }
 
 // Exporta contatos da lista para arquivo.txt
 void exportar_contatos(Contato *lista_contatos)
 {
-    FILE *saida = fopen("contatos.txt", "a+");
+    FILE *saida = fopen("contatos.txt", "w");
     for (int i = 0; i <= TAMANHO_VETOR; i++)
     {
         if (lista_contatos[i].numero[0] != '\0')

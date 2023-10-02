@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include </home/abner/Desktop/Codes/Projeto Hash/collisionHash/C/src/contato.c>
-#include </home/abner/Desktop/Codes/Projeto Hash/collisionHash/C/src/menu.c>
+#include <collisionHash/C/src/contato.c>
+#include <collisionHash/C/src/menu.c>
 
 
 int main(){
@@ -9,7 +9,7 @@ int main(){
     Contato lista_contatos[32];
     inicializa_lista(lista_contatos);
 
-    while(var_control != 10){
+    while(var_control != 8){
         printar_menu();
         scanf("%i", &var_control);
         //system("clear");
@@ -59,11 +59,11 @@ int main(){
         case 7:
             exportar_contatos(lista_contatos);
             break;
-
+        
         // Saída do Programa
-        case 9:
-
+        case 8:
             break;
+
         }
     }
     return 0;
