@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include <collisionHash/C/src/contato.c>
-#include <collisionHash/C/src/menu.c>
+#include "C:\Users\Vladimyr\Documents\Visual_Studio_Code\GitHub\Collision Hash\collisionHash\collisionHash\C\src\contato.c"
+#include "C:\Users\Vladimyr\Documents\Visual_Studio_Code\GitHub\Collision Hash\collisionHash\collisionHash\C\src\menu.c"
 
 
 int main(){
@@ -19,6 +19,7 @@ int main(){
 
         // Inserir Contato
         case 1:
+            printf("\n");
             Contato novo_contato = cria_contato();
             insere_contato(lista_contatos, novo_contato);
             espacos_livre--;

@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 #define TAMANHO_VETOR 32
 
 typedef struct contato
@@ -25,6 +26,10 @@ Contato cria_contato()
     Contato novo_contato;
     printf("Insira o nome do contato:\n");
     scanf(" %[^\n]", novo_contato.nome);
+    if (strlen(novo_contato.nome) > 0)
+    {
+        novo_contato.nome[0] = toupper(novo_contato.nome[0]); // Verificando se a primeira letra do nome é maiúscula.
+    }
     printf("Insira o número de contato de %s:\n", novo_contato.nome);
     scanf(" %[^\n]", novo_contato.numero);
     printf("Insira o email de %s:\n", novo_contato.nome);
@@ -181,9 +186,14 @@ void edita_contato(Contato *lista_contatos)
             switch (var_controle)
             {
             case 1:
+                printf("\n");
                 char novo_nome[50];
                 printf("Insira o novo nome para atual contato %s:\n.", lista_contatos[index].nome);
                 scanf(" %[^\n]", novo_nome);
+                if (strlen(novo_nome) > 0)
+                {
+                    novo_nome[0] = toupper(novo_nome[0]); // Verificando se a primeira letra do nome é maiúscula.
+                }
                 printf("Você irá mudar o nome do contato de %s para %s, tem certeza disso?\n1)Sim\t2)Não\n", lista_contatos[index].nome, novo_nome);
                 scanf("%i", &var_confirma);
                 if (var_confirma == 1)
@@ -193,6 +203,7 @@ void edita_contato(Contato *lista_contatos)
                 break;
 
             case 2:
+                printf("\n");
                 char novo_numero[30];
                 printf("Insira o novo número para o atual contato de %s:\n", lista_contatos[index].nome);
                 scanf(" %[^\n]", novo_numero);
@@ -212,6 +223,7 @@ void edita_contato(Contato *lista_contatos)
                 break;
 
             case 3:
+                printf("\n");
                 char novo_email[50];
                 printf("Insira o novo email para atual contato %s:\n.", lista_contatos[index].nome);
                 scanf(" %[^\n]", novo_email);
@@ -252,7 +264,7 @@ int importar_contatos(Contato *lista_contatos, int espacos_livres)
         sscanf(linha, "Numero: %s\tNome: %s\tEmail: %s", novo_contato_importado.numero, novo_contato_importado.nome, novo_contato_importado.email);
         insere_contato(lista_contatos, novo_contato_importado);
         espacos_livres--;
-        if (espacos_livres = 0)
+        if ((espacos_livres = 0))
         {
             printf("Armazenamento cheio.\n");
             break;
