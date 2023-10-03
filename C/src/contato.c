@@ -177,18 +177,23 @@ void edita_contato(Contato *lista_contatos)
     int index = retorna_index_comparacao(lista_contatos, cont_conc, numero_edita);
     if (index != -1)
     {
-        printf("Qual alteração você deseja fazer?\n1)Nome\n2)Número\n3)Email\n4)Sair\n");
-        scanf("%i", &var_controle);
-        while (var_controle != 4)
+        do
         {
             printf("Qual alteração você deseja fazer?\n1)Nome\n2)Número\n3)Email\n4)Sair\n");
             scanf("%i", &var_controle);
+            if (var_controle == 4)
+            {
+                break;
+            }
+
+            // printf("Qual alteração você deseja fazer?\n1)Nome\n2)Número\n3)Email\n4)Sair\n");
+            // scanf("%i", &var_controle);
             switch (var_controle)
             {
             case 1:
                 printf("\n");
                 char novo_nome[50];
-                printf("Insira o novo nome para atual contato %s:\n.", lista_contatos[index].nome);
+                printf("Insira o novo nome para atual contato %s:\n", lista_contatos[index].nome);
                 scanf(" %[^\n]", novo_nome);
                 if (strlen(novo_nome) > 0)
                 {
@@ -225,7 +230,7 @@ void edita_contato(Contato *lista_contatos)
             case 3:
                 printf("\n");
                 char novo_email[50];
-                printf("Insira o novo email para atual contato %s:\n.", lista_contatos[index].nome);
+                printf("Insira o novo email para atual contato %s:\n", lista_contatos[index].nome);
                 scanf(" %[^\n]", novo_email);
                 printf("Você irá mudar o email do contato de %s para %s, tem certeza disso?\n1)Sim\t2)Não\n", lista_contatos[index].nome, novo_email);
                 scanf("%i", &var_confirma);
@@ -238,7 +243,7 @@ void edita_contato(Contato *lista_contatos)
             case 4:
                 break;
             }
-        }
+        } while (var_controle != 4);
     }
     else
     {

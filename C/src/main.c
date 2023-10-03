@@ -12,7 +12,7 @@ int main(){
     while(var_control != 8){
         printar_menu();
         scanf("%i", &var_control);
-        //system("clear");
+        system("clear");
 
         switch (var_control)
         {
