@@ -1,4 +1,0 @@
-Numero: 8459595959	Nome: Fer	Email: fer@email.com
-Numero: 8496476996	Nome: Vladi	Email: vladi@email.com
-Numero: 8424354657	Nome: Joao	Email: joao@gmail.com
-Numero: 8456453446	Nome: Maria	Email: maria@email.com

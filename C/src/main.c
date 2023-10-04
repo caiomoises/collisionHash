@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include "C:\Users\Vladimyr\Documents\Visual_Studio_Code\GitHub\Collision Hash\collisionHash\collisionHash\C\src\contato.c"
-#include "C:\Users\Vladimyr\Documents\Visual_Studio_Code\GitHub\Collision Hash\collisionHash\collisionHash\C\src\menu.c"
+#include "C\src\contato.c"
+#include "C\src\menu.c"
 
 
 int main(){
@@ -12,7 +12,7 @@ int main(){
     while(var_control != 8){
         printar_menu();
         scanf("%i", &var_control);
-        system("clear");
+        //system("cls");
 
         switch (var_control)
         {
