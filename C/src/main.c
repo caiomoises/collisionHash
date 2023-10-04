@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include </home/abner/Desktop/Codes/Projeto Hash/collisionHash/C/src/contato.c>
-#include </home/abner/Desktop/Codes/Projeto Hash/collisionHash/C/src/menu.c>
+#include "C:\Users\Vladimyr\Documents\Visual_Studio_Code\GitHub\Collision Hash\collisionHash\collisionHash\C\src\contato.c"
+#include "C:\Users\Vladimyr\Documents\Visual_Studio_Code\GitHub\Collision Hash\collisionHash\collisionHash\C\src\menu.c"
 
 
 int main(){
@@ -9,16 +9,17 @@ int main(){
     Contato lista_contatos[32];
     inicializa_lista(lista_contatos);
 
-    while(var_control != 10){
+    while(var_control != 8){
         printar_menu();
         scanf("%i", &var_control);
-        //system("clear");
+        system("clear");
 
         switch (var_control)
         {
 
         // Inserir Contato
         case 1:
+            printf("\n");
             Contato novo_contato = cria_contato();
             insere_contato(lista_contatos, novo_contato);
             espacos_livre--;
@@ -59,11 +60,11 @@ int main(){
         case 7:
             exportar_contatos(lista_contatos);
             break;
-
+        
         // Saída do Programa
-        case 9:
-
+        case 8:
             break;
+
         }
     }
     return 0;
