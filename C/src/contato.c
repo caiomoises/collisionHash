@@ -114,6 +114,7 @@ void insere_contato(Contato *lista_contatos, Contato novo_contato)
     int novo_concatenado = concatenacao(novo_contato.numero);
     int index_vazio = retorna_index_vazio(lista_contatos, novo_concatenado);
     lista_contatos[index_vazio] = novo_contato;
+    printf("Novo contado adicionado!\n");
 }
 
 // Deletará o contato indicado
@@ -129,6 +130,8 @@ void deleta_contato(Contato *lista_contatos)
         strcpy(lista_contatos[index].numero, "\0");
         strcpy(lista_contatos[index].nome, "\0");
         strcpy(lista_contatos[index].email, "\0");
+
+        printf("Remoção feita com sucesso!\n");
     }
     else
     {
