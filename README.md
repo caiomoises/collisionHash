@@ -1,5 +1,9 @@
 <h1 align="center"><b><i>Collision Hash</i></b></h1>
 
+<p align ="center">
+    <img src="collisionhash.png" style= "width: 60%; height: auto;" align="right" />
+</p>
+
 #### Docente:
 - [ Kennedy Reurison Lopes](https://github.com/kennedyufersa)
 
