@@ -111,7 +111,85 @@ Logo, o contato de João será armazenado na posição/slot de número 25.
 
 ## IMPLEMENTAÇÃO
 
+Para o bom funcionamento do código, é necessário a inserção de contatos, mesmo que em outra execução. Insira o contato desejado, com nome, número e e-mail, e, em seguida, você poderá remover o contato da sua lista, inserindo o número do mesmo, buscar esse mesmo contato para exibir as informações e/ou editar as informações desse contato. Caso a opção de editar número seja realizada, o contato terá um novo índice na lista.
+	
+Com os contatos inseridos na agenda, torna-se possível realizar a exportação dos mesmos para um arquivo de texto, que, na mesma ou em outra execução, pode ser lido e armazenar os contatos na sua lista. O armazenamento dos contatos de um arquivo de texto para a lista é possível através da função importar contatos, onde, será acessado o arquivo de nome “contatos.txt” e lido, pegando as informações e transformado-as em contatos na lista.
+
+#### VARIÁVEIS E ESTRUTURAS DE DADOS PRINCIPAIS:
+
+- **Lista de contatos:** A lista de contatos é representada por uma estrutura de dados que pode armazenar informações como nome, número e email de cada contato. Esta estrutura pode ser uma matriz ou um vetor de tamanho fixo, com um tamanho máximo de 32 slots, correspondendo a 32 possíveis contatos.
+
+- **Função de Hash:** A função de hash é responsável por calcular a posição de armazenamento de um contato na lista com base no número de contato. Geralmente, essa função usa o método da divisão para calcular o resto da divisão do número de contato pelo número total de slots disponíveis (32 neste caso).
+
+- **Algoritmo de Sondagem Linear:** Para lidar com colisões, o código implementa uma estratégia de sondagem linear. Quando ocorre uma colisão (ou seja, quando dois contatos têm a mesma posição calculada pela função de hash), o código encontra o próximo slot vazio na lista, movendo-se linearmente pela lista até encontrar um slot vazio.
+
+- **Funções Auxiliares:** O código inclui várias funções auxiliares para realizar operações específicas, como criar um novo contato, calcular a posição de armazenamento com base na função de hash, buscar um contato na lista, editar informações de contato, entre outras.
+
+#### LOGICA PRINCIPAL:
+- O programa inicia criando uma lista de contatos vazia, onde cada slot é inicializado com valores vazios.
+
+- O usuário pode realizar várias operações, como inserir um novo contato, buscar um contato existente, editar informações de contato, excluir um contato, listar todos os contatos, importar contatos de um arquivo e exportar contatos para um arquivo.
+
+- Quando um novo contato é inserido, o código calcula a posição de armazenamento usando a função de hash. Se houver colisão, ele utiliza a sondagem linear para encontrar o próximo slot vazio.
+
+- As operações de busca, edição e exclusão também utilizam a função de hash para localizar o contato desejado na lista.
+
+- O código permite a importação e exportação de contatos para e de um arquivo de texto, garantindo que os dados dos contatos sejam persistentes entre as execuções do programa.
+
 ## TESTES E RESULTADOS
+
+Nesta seção, descreveremos os testes realizados para verificar a funcionalidade do código "Collision Hash". Abordaremos os resultados dos testes, incluindo exemplos de entradas e saídas, e discutiremos como os resultados atendem aos objetivos definidos.
+
+- **Função "Inserir Contato":** Foi feito vários testes na hora de inserir contatos, e a conclusão é que tanto na hora de inserir um contato novo quanto contatos repetidos está funcionando, junto a função de endereçamento aberto.
+
+      Exemplo 1:
+				Entrada:vlad				Saída:		
+						8496476996
+						vlad@email.com
+      Exemplo 2:
+				Entrada:maria				Saída:		
+						8456453446
+						maria@email.com
+
+Caso o número seja repetido, a função de endereçamento aberto irá somar +1 no index do vetor.
+
+- **Função "Remover Contatos":** Nessa função, a remoção está sendo feita corretamente.
+      
+      Exemplo:
+				Entrada: 8496476996			
+				Saída: "Remoção feita com sucesso!"
+
+- **Função "Listar Contatos":**
+A
+
+
+- **Função "Buscar Contato":** A função de buscar os contatos, ela imprime na tela os dados do contato desejado no vetor. Caso o vetor esteja vazio, ou o contato não exista, ele apenas imprime uma mensagem de contato não encontrado.
+
+      Exemplo 1:
+				Entrada: 8456453446			
+				Saída: Nome: Maria
+					   Número: 8456453446   
+					   Email: maria@email.com
+      Exemplo 2:
+				Entrada: 8496503346			
+				Saída: "Contato não encontrado."
+
+- **Função "Editar Contato":** Essa função irá editar os dados de algum contato específico, como por exemplo o nome, email ou número.
+      
+      Exemplo 1:
+				Entrada: 8456453446			
+					  	 1
+						 João
+						 1
+						 4
+				Saída: O nome será alterado no vetor.
+
+- **Função "Importar Contatos":** A função de importar, faz com que o seu vetor seja preenchido com os dados do seu banco de dados. Testes foram feitos tanto com o vetor vazio quanto com o vetor preenchido, e caso essa opção seja usada mais de uma vez, seu vetor irá duplicar os contatos no vetor.
+
+- **Função "Exportar Contatos":** A função de exportar, irá fazer com que os contatos no seu vetor, sejam transferidos para o banco de dados, caso essa opção seja usada mais de uma vez, seu banco não irá duplicar os contatos, irá apenas sobrescrever os dados existentes pelos dados do vetor.
+
+- **Função "Sair do Programa":** Esta função irá sair do programa, e parar a sua execução apenas se digitado o número 8.
+
 
 ## DESAFIOS E SOLUÇÕES
 
