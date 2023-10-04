@@ -4,6 +4,8 @@
 __pycache__
 media
 .vscode/
+C/src/output
+C/src/main.exe
 
 # Backup files # 
 *.bak 
