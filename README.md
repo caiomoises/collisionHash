@@ -159,8 +159,14 @@ Caso o número seja repetido, a função de endereçamento aberto irá somar +1 
 				Entrada: 8496476996			
 				Saída: "Remoção feita com sucesso!"
 
-- **Função "Listar Contatos":**
-A
+- **Função "Listar Contatos":** A função de buscar os contatos, ela imprime na tela os dados do contato desejado no vetor. Caso o vetor esteja vazio, ou o contato não exista, ele apenas imprime uma mensagem de contato não encontrado.
+      
+      Exemplo 1:
+				Entrada: 8456453446			
+				Saída: Nome: Maria
+					   Número: 8456453446   
+					   Email: maria@email.com
+
 
 
 - **Função "Buscar Contato":** A função de buscar os contatos, ela imprime na tela os dados do contato desejado no vetor. Caso o vetor esteja vazio, ou o contato não exista, ele apenas imprime uma mensagem de contato não encontrado.
